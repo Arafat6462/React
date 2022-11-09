@@ -1,0 +1,41 @@
+{
+  "contracts": [
+    {
+      "id": 1,
+      "name": "Arafat hossain",
+      "email": "arafat6462@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Afsana",
+      "email": "afsana@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "Biddendu",
+      "email": "biddendu@gmail.com"
+    },
+    {
+      "id": 4,
+      "name": "Saurav",
+      "email": "saurav@gmail.com"
+    },
+    {
+      "id": 5,
+      "name": "Himel",
+      "email": "himel@gmail.com"
+    },
+    {
+      "name": "Fahim",
+      "phone": "45",
+      "email": "fahim@gmail.com",
+      "id": 6
+    },
+    {
+      "name": "",
+      "phone": "",
+      "email": "",
+      "id": 7
+    }
+  ]
+}
