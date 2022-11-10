@@ -1,23 +1,38 @@
 import React from "react";
 import "./Table.css";
+import Axios from "axios";
+import { useState } from "react";
+
 // tableData,
-function Body({ columnName, data }) {
+function Body({ columnName }) {
+  const [invoiceList, setInvoiceList] = useState([]);
+
+  // GET Data
+  const getInvoice = () => {
+    Axios.get("http://localhost:3001/invoice").then((response) => {
+      setInvoiceList(response.data);
+    });
+  };
+
   return (
     <div>
+      {getInvoice()}
       <h1>Invoice Table</h1>
-      <button className="download">Download</button>
+
+      <button className="button download">Download</button>
       <div>
-        <table id="customers">
+        <table id="table">
           <thead>
             <tr>
               {columnName.map((headName, index) => (
                 <TableHeadName headName={headName} />
               ))}
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
-              <TableRow item={item} columnName={columnName} />
+            {invoiceList.map((dataObject, index) => (
+              <TableRow dataObject={dataObject} columnName={columnName} />
             ))}
           </tbody>
         </table>
@@ -28,13 +43,17 @@ function Body({ columnName, data }) {
 
 const TableHeadName = ({ headName }) => <th>{headName.heading}</th>;
 
-const TableRow = ({ item, columnName }) => (
+const TableRow = ({ dataObject, columnName }) => (
   <tr>
     {columnName.map((columnsItem, index) => {
-      return <td>{item[`${columnsItem.value}`]}</td>;
+      return <td>{dataObject[`${columnsItem.value}`]}</td>;
     })}
-
-    {console.log(columnName)}
+    {
+      <td>
+        <button className="button delete">Delete</button>
+        <button className="button update">Update</button>
+      </td>
+    }
   </tr>
 );
 

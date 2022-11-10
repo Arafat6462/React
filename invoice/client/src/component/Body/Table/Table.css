@@ -1,27 +1,25 @@
-#customers {
+#table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
   text-align: center;
-
-  
 }
 
-#customers td,
-#customers th {
+#table td,
+#table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#customers tr:nth-child(even) {
+#table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-#customers tr:hover {
+#table tr:hover {
   background-color: #ddd;
 }
 
-#customers th {
+#table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -30,20 +28,26 @@
   text-align: center;
 }
 
+.button {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 8px;
+  border: none;
+}
+.delete {
+  background-color: #dd3439;
+  margin: 5px;
+}
 
-
+.update {
+  background-color: #24a0ed;
+  margin: 5px;
+}
 .download {
-    float: right;
-    color: black;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px; 
-    line-height: 25px;
-    border-radius: 4px;
-
-    background-color: rgb(221, 221, 221);
-    margin-bottom: 20px;
-    margin-right: 20px;
-   }
-  
+  background-color: #24a0ed;
+  margin: 5px;
+}
