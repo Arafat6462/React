@@ -1,13 +1,21 @@
 import React from "react";
+import Home from "./component/Page/Home/Home";
+import Update from "./component/Page/Update/Update";
+import Error from "./component/Page/Error";
 import Header from "./component/Header/Header";
-import Body from "./component/Body/Body";
+// "react-router-dom": "6",
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Header />
-      <Body />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/update" element={<Update />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -44,5 +44,5 @@ app.delete("/delete/:id", (req, res) => {
 });
 
 app.listen(3001, () => {
-  console.log("server is running on port 3001");
+  console.log("Invoice server is running on port 3001");
 });
