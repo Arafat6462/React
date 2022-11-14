@@ -41,11 +41,13 @@
 .delete {
   background-color: #dd3439;
   margin: 5px;
+  cursor: pointer;
 }
 
 .update {
   background-color: #24a0ed;
   margin: 5px;
+  text-decoration: none;
 }
 .download {
   background-color: #24a0ed;

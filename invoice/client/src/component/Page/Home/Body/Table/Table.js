@@ -2,18 +2,21 @@ import React from "react";
 import "./Table.css";
 import Axios from "axios";
 import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
-
-// tableData,
 function Body({ columnName }) {
   const [invoiceList, setInvoiceList] = useState([]);
+  const navigate = useNavigate(); // to redirect the page
 
   // GET Data
-  useEffect(() => {
-    console.log("useEffect");
+  const getAllInvoice = () => {
     Axios.get("http://localhost:3001/invoice").then((response) => {
       setInvoiceList(response.data);
+      console.log("get invoice");
     });
+  };
+  useEffect(() => {
+    getAllInvoice();
   }, []);
 
   // Update
@@ -25,7 +28,14 @@ function Body({ columnName }) {
     <div>
       <h1>Invoice Table</h1>
 
-      <button className="button download">Download</button>
+      <button
+        onClick={() => {
+          navigate("/update");
+        }}
+        className="button download"
+      >
+        Go to update
+      </button>
       <div>
         <table id="table">
           <thead>
@@ -50,10 +60,11 @@ function Body({ columnName }) {
 const TableHeadName = ({ headName }) => <th>{headName.heading}</th>;
 
 const TableRow = ({ dataObject, columnName }) => (
-  <tr>
+  <tr key={dataObject.id}>
     {columnName.map((columnsItem, index) => {
       return <td>{dataObject[`${columnsItem.value}`]}</td>;
     })}
+
     {
       <td>
         <button
@@ -64,8 +75,15 @@ const TableRow = ({ dataObject, columnName }) => (
         >
           Delete
         </button>
-        <button className="button update">Update</button>
-        {/* {console.log(dataObject["id"])} */}
+        <NavLink
+          onClick={() => {
+            updateInvoice(dataObject.id);
+          }}
+          className="button update"
+          to={"/update"}
+        >
+          Update
+        </NavLink>
       </td>
     }
   </tr>
@@ -73,8 +91,14 @@ const TableRow = ({ dataObject, columnName }) => (
 
 // Delete
 const deleteInvoice = (id) => {
-  Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {});
-  console.log("iiiiiiiiii : " + id);
+  Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+    setInvoiceList(response.data);
+  });
+};
+
+//Update
+const updateInvoice = (id) => {
+  console.log("update : " + id);
 };
 
 export default Body;

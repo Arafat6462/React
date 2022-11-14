@@ -1,4 +1,4 @@
-
+/* 
 body { 
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -40,3 +40,35 @@ body {
     .header-left {
       float: none;
     }
+
+
+
+     */
+
+.header {
+  height: 8vh;
+  background-color: rgba(23, 31, 31, 0.705);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: white;
+  margin: 1rem;
+  text-decoration: none;
+  font-size: 20px;
+/*   
+  background-color: #24a0ed;
+  padding: 8px;
+  border-radius: 8px; */
+}
+
+.link:hover {
+  color: orange;
+}
+
+/* NavLink has active class */
+.header .active {
+  color: yellow;
+}

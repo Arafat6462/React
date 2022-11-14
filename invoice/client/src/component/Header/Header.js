@@ -1,18 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
   return (
-    <div>
-      <div className="header">
-        <div className="header-left">
-          <Link className="active" to="/">
-            Home
-          </Link>
-          <Link to="/update">Update</Link>
-        </div>
-      </div>
+    <div className="header">
+      <NavLink className="link" to="/">
+        Home
+      </NavLink>
+      <NavLink className="link" to="/update">
+        Update
+      </NavLink>
+      <NavLink className="link" to="/create">
+        Cteate
+      </NavLink>
     </div>
   );
 }
