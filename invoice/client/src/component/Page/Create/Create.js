@@ -24,9 +24,9 @@ const Create = () => {
   const [bkashCost, setBkashCost] = useState(0);
   const [other, setOther] = useState(0);
   const [depositToAccount, setDepositToAccount] = useState(0);
+  var createStatus = "";
 
   const addInvoice = () => {
-    console.log("i am 1");
     Axios.post("http://localhost:3001/create", {
       // send it to backend from frontend.
       date: date,
@@ -51,6 +51,7 @@ const Create = () => {
       depositToAccount: depositToAccount,
     }).then(() => {
       console.log("success");
+      createStatus = "Success";
     });
   };
 
@@ -229,8 +230,9 @@ const Create = () => {
       </div>
 
       <button type="submit" onClick={addInvoice}>
-        submit
+        Create Invoice
       </button>
+      <div>{createStatus}</div>
     </div>
   );
 };

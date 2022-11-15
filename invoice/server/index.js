@@ -21,7 +21,6 @@ const db = mysql.createConnection({
 
 // post into database
 app.post("/create", (req, res) => {
-  console.log(req);
   const date = req.body.date;
   const invoice = req.body.invoice;
   const name = req.body.name;
@@ -42,33 +41,35 @@ app.post("/create", (req, res) => {
   const bkashCost = req.body.bkashCost;
   const other = req.body.other;
   const depositToAccount = req.body.depositToAccount;
+  const id = null;
 
   db.query(
-    "INSERT INTO invoice (date,invoice_no,name,address,email,mobile,qty,product,product_price,advance,update,delivery_charge,delivery_company,remarks,first_followup,second_followup,third_followup,bkash_cost,others_vat_tax,deposit_to_accounts) VALUES('2', '2022/4/4', '123', 'abc', 'gulshan', 'arafatdf@uashfjm.com', '34567', '34', 'edgfdm', '34', '43', 'na', '34', 'sdfvcx', 'dsf', 'dfs', 'dsf', 'sadf', '3', '3', '4')",
+    "INSERT INTO invoice VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
     // "INSERT INTO invoice (`date`,`invoice_no`,`name`,`address`,`email`,`mobile`,`qty`,`product`,`product_price`,`advance`,`update`,`delivery_charge`,`delivery_company`,`remarks`,`first_followup`,`second_followup`,`third_followup`,`bkash_cost`,`others_vat_tax`,`deposit_to_accounts`) VALUES( ''2022/4/4', '123', 'pqr', 'gulshan', 'arafatdf@uashfjm.com', '34567', '34', 'edgfdm', '34', '43', 'na', '34', 'sdfvcx', 'dsf', 'dfs', 'dsf', 'sadf', '3', '3', '4')",
-
-    // [
-    //   date,
-    //   invoice,
-    //   name,
-    //   address,
-    //   email,
-    //   mobile,
-    //   qty,
-    //   product,
-    //   productPrice,
-    //   advance,
-    //   update,
-    //   deliveryCharge,
-    //   deliveryCompany,
-    //   remark,
-    //   first_followup,
-    //   second_followup,
-    //   third_followup,
-    //   bkashCost,
-    //   other,
-    //   depositToAccount,
-    // ]
+    // (id,date,invoice_no,name,address,email,mobile,qty,product,product_price,advance,update,delivery_charge,delivery_company,remarks,first_followup,second_followup,third_followup,bkash_cost,others_vat_tax,deposit_to_accounts)
+    [
+      id,
+      date,
+      invoice,
+      name,
+      address,
+      email,
+      mobile,
+      qty,
+      product,
+      productPrice,
+      advance,
+      update,
+      deliveryCharge,
+      deliveryCompany,
+      remark,
+      first_followup,
+      second_followup,
+      third_followup,
+      bkashCost,
+      other,
+      depositToAccount,
+    ],
     (err, result) => {
       if (err) {
         console.log("error is : " + err);
@@ -100,6 +101,15 @@ app.delete("/delete/:id", (req, res) => {
     } else {
       res.send(result);
     }
+  });
+});
+
+// Search
+app.get("/search/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("SELECT * FROM invoice where id=?", id, (err, result) => {
+    if (err) console.log(err);
+    else res.send(result);
   });
 });
 

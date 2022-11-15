@@ -76,11 +76,12 @@ const TableRow = ({ dataObject, columnName }) => (
           Delete
         </button>
         <NavLink
-          onClick={() => {
-            updateInvoice(dataObject.id);
-          }}
+          // onClick={() => {
+          //   updateInvoice(dataObject);
+          // }}
           className="button update"
           to={"/update"}
+          state={dataObject}
         >
           Update
         </NavLink>
@@ -97,8 +98,9 @@ const deleteInvoice = (id) => {
 };
 
 //Update
-const updateInvoice = (id) => {
-  console.log("update : " + id);
+const updateInvoice = (dataObject) => {
+  console.log("update : " + dataObject.id);
+  console.log(dataObject);
 };
 
 export default Body;
