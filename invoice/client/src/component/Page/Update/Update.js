@@ -5,7 +5,7 @@ import "./Update.css";
 
 const Update = () => {
   const [searchId, setSearchId] = useState();
-  const [searchResult, setSearchResult] = useState();
+  const [searchResult, setSearchResult] = useState([""]);
 
   const [date, setDate] = useState("");
   const [invoice, setInvoice] = useState(0);
@@ -60,12 +60,15 @@ const Update = () => {
   // Search
   const searchInvoice = () => {
     Axios.get(`http://localhost:3001/search/${searchId}`).then((Response) => {
-      setSearchResult(Response);
+      setSearchResult(Response.data);
+      // console.log(Response.data[0].name);
     });
   };
 
-  console.log(typeof searchResult);
+  // console.log(typeof searchResult);
   console.log(searchResult);
+  console.log(searchResult[0].productPrice);
+
   return (
     <div>
       <div className="search">
@@ -85,6 +88,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="ID"
+          value={searchResult[0].id}
           onChange={(event) => setId(event.target.value)}
         />
       </div>
@@ -93,6 +97,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="2022-10-27"
+          value={searchResult[0].date}
           onChange={(event) => setDate(event.target.value)}
         />
       </div>
@@ -101,6 +106,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="6"
+          value={searchResult[0].invoice_no}
           onChange={(event) => setInvoice(event.target.value)}
         />
       </div>
@@ -109,6 +115,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="Arafat"
+          value={searchResult[0].name}
           onChange={(event) => setName(event.target.value)}
         />
       </div>
@@ -117,6 +124,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="Gulshan-1, Dhaka"
+          value={searchResult[0].address}
           onChange={(event) => setAddress(event.target.value)}
         />
       </div>
@@ -125,6 +133,7 @@ const Update = () => {
         <input
           type="email"
           placeholder="abc@gmail.com"
+          value={searchResult[0].email}
           onChange={(event) => setEmail(event.target.value)}
         />
       </div>
@@ -133,6 +142,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="01777766332"
+          value={searchResult[0].mobile}
           onChange={(event) => setMobile(event.target.value)}
         />
       </div>
@@ -141,6 +151,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="3"
+          value={searchResult[0].qty}
           onChange={(event) => setQty(event.target.value)}
         />
       </div>
@@ -149,6 +160,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="Head phone"
+          value={searchResult[0].product}
           onChange={(event) => setProduct(event.target.value)}
         />
       </div>
@@ -157,6 +169,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="1020"
+          value={searchResult[0].product_price}
           onChange={(event) => setProductPrice(event.target.value)}
         />
       </div>
@@ -165,6 +178,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="500"
+          value={searchResult[0].advance}
           onChange={(event) => setAdvance(event.target.value)}
         />
       </div>
@@ -173,6 +187,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="Delivered"
+          value={searchResult[0].update}
           onChange={(event) => setUpdate(event.target.value)}
         />
       </div>
@@ -181,6 +196,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="100"
+          value={searchResult[0].delivery_charge}
           onChange={(event) => setDeliveryCharge(event.target.value)}
         />
       </div>
@@ -189,6 +205,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="RedX"
+          value={searchResult[0].delivery_company}
           onChange={(event) => setDeliveryCompany(event.target.value)}
         />
       </div>
@@ -197,6 +214,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="Nothing"
+          value={searchResult[0].remarks}
           onChange={(event) => setRemark(event.target.value)}
         />
       </div>
@@ -206,6 +224,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="Processing"
+          value={searchResult[0].first_followup}
           onChange={(event) => setFirst_followup(event.target.value)}
         />
       </div>
@@ -215,6 +234,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="N/A"
+          value={searchResult[0].second_followup}
           onChange={(event) => setSecond_followupId(event.target.value)}
         />
       </div>
@@ -224,6 +244,7 @@ const Update = () => {
         <input
           type="text"
           placeholder="N/A"
+          value={searchResult[0].third_followup}
           onChange={(event) => setThird_followup(event.target.value)}
         />
       </div>
@@ -232,6 +253,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="20"
+          value={searchResult[0].bkash_cost}
           onChange={(event) => setBkashCost(event.target.value)}
         />
       </div>
@@ -240,6 +262,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="10"
+          value={searchResult[0].others_vat_tax}
           onChange={(event) => setOther(event.target.value)}
         />
       </div>
@@ -248,6 +271,7 @@ const Update = () => {
         <input
           type="number"
           placeholder="800"
+          value={searchResult[0].deposit_to_accounts}
           onChange={(event) => setDepositToAccount(event.target.value)}
         />
       </div>
