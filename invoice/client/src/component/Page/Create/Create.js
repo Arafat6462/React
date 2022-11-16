@@ -50,8 +50,8 @@ const Create = () => {
       other: other,
       depositToAccount: depositToAccount,
     }).then(() => {
-      console.log("success");
-      createStatus = "Success";
+      createStatus = "Invoice Create Success";
+      console.log(createStatus);
     });
   };
 
@@ -232,7 +232,9 @@ const Create = () => {
       <button type="submit" onClick={addInvoice}>
         Create Invoice
       </button>
-      <div>{createStatus}</div>
+      <div>
+        <label>{createStatus}</label>
+      </div>
     </div>
   );
 };

@@ -80,6 +80,68 @@ app.post("/create", (req, res) => {
   );
 });
 
+// Update
+app.put("/update", (req, res) => {
+  const id = req.body.id;
+  const date = req.body.date;
+  const invoice = req.body.invoice;
+  const name = req.body.name;
+  const address = req.body.address;
+  const email = req.body.email;
+  const mobile = req.body.mobile;
+  const qty = req.body.qty;
+  const product = req.body.product;
+  const productPrice = req.body.productPrice;
+  const advance = req.body.advance;
+  const update = req.body.update;
+  const deliveryCharge = req.body.deliveryCharge;
+  const deliveryCompany = req.body.deliveryCompany;
+  const remark = req.body.remark;
+  const first_followup = req.body.first_followup;
+  const second_followup = req.body.second_followup;
+  const third_followup = req.body.third_followup;
+  const bkashCost = req.body.bkashCost;
+  const other = req.body.other;
+  const depositToAccount = req.body.depositToAccount;
+ 
+  db.query(
+    "UPDATE invoice SET VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) WHERE id=?",
+    // "INSERT INTO invoice (`date`,`invoice_no`,`name`,`address`,`email`,`mobile`,`qty`,`product`,`product_price`,`advance`,`update`,`delivery_charge`,`delivery_company`,`remarks`,`first_followup`,`second_followup`,`third_followup`,`bkash_cost`,`others_vat_tax`,`deposit_to_accounts`) VALUES( ''2022/4/4', '123', 'pqr', 'gulshan', 'arafatdf@uashfjm.com', '34567', '34', 'edgfdm', '34', '43', 'na', '34', 'sdfvcx', 'dsf', 'dfs', 'dsf', 'sadf', '3', '3', '4')",
+    // (id,date,invoice_no,name,address,email,mobile,qty,product,product_price,advance,update,delivery_charge,delivery_company,remarks,first_followup,second_followup,third_followup,bkash_cost,others_vat_tax,deposit_to_accounts)
+    [
+      id,
+      date,
+      invoice,
+      name,
+      address,
+      email,
+      mobile,
+      qty,
+      product,
+      productPrice,
+      advance,
+      update,
+      deliveryCharge,
+      deliveryCompany,
+      remark,
+      first_followup,
+      second_followup,
+      third_followup,
+      bkashCost,
+      other,
+      depositToAccount,
+      id
+    ],
+    (err, result) => {
+      if (err) {
+        console.log("error is : " + err);
+      } else {
+        res.send("Values Inserted");
+      }
+    }
+  );
+});
+
 // get request
 app.get("/invoice", (req, res) => {
   db.query("SELECT * FROM invoice", (err, result) => {

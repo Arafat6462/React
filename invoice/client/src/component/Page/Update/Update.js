@@ -7,6 +7,7 @@ const Update = () => {
   const [searchId, setSearchId] = useState();
   const [searchResult, setSearchResult] = useState([""]);
 
+  const [id, setId] = useState("");
   const [date, setDate] = useState("");
   const [invoice, setInvoice] = useState(0);
   const [name, setName] = useState("");
@@ -30,8 +31,9 @@ const Update = () => {
 
   // Update
   const UpdateInvoice = () => {
-    Axios.post("http://localhost:3001/create", {
+    Axios.post("http://localhost:3001/update", {
       // send it to backend from frontend.
+      id: id,
       date: date,
       invoice: invoice,
       name: name,
@@ -60,14 +62,10 @@ const Update = () => {
   // Search
   const searchInvoice = () => {
     Axios.get(`http://localhost:3001/search/${searchId}`).then((Response) => {
-      setSearchResult(Response.data);
-      // console.log(Response.data[0].name);
+      if (Response.data.length != 0) setSearchResult(Response.data);
+      else console.log("Data Not Found");
     });
   };
-
-  // console.log(typeof searchResult);
-  console.log(searchResult);
-  console.log(searchResult[0].productPrice);
 
   return (
     <div>
