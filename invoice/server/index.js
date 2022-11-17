@@ -81,7 +81,7 @@ app.post("/create", (req, res) => {
 });
 
 // Update
-app.put("/update", (req, res) => {
+app.post("/update", (req, res) => {
   const id = req.body.id;
   const date = req.body.date;
   const invoice = req.body.invoice;
@@ -103,9 +103,10 @@ app.put("/update", (req, res) => {
   const bkashCost = req.body.bkashCost;
   const other = req.body.other;
   const depositToAccount = req.body.depositToAccount;
- 
+  console.log("calling Update " + id);
+
   db.query(
-    "UPDATE invoice SET VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) WHERE id=?",
+    `UPDATE invoice SET [?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?] WHERE id=${id}`,
     // "INSERT INTO invoice (`date`,`invoice_no`,`name`,`address`,`email`,`mobile`,`qty`,`product`,`product_price`,`advance`,`update`,`delivery_charge`,`delivery_company`,`remarks`,`first_followup`,`second_followup`,`third_followup`,`bkash_cost`,`others_vat_tax`,`deposit_to_accounts`) VALUES( ''2022/4/4', '123', 'pqr', 'gulshan', 'arafatdf@uashfjm.com', '34567', '34', 'edgfdm', '34', '43', 'na', '34', 'sdfvcx', 'dsf', 'dfs', 'dsf', 'sadf', '3', '3', '4')",
     // (id,date,invoice_no,name,address,email,mobile,qty,product,product_price,advance,update,delivery_charge,delivery_company,remarks,first_followup,second_followup,third_followup,bkash_cost,others_vat_tax,deposit_to_accounts)
     [
@@ -130,7 +131,6 @@ app.put("/update", (req, res) => {
       bkashCost,
       other,
       depositToAccount,
-      id
     ],
     (err, result) => {
       if (err) {

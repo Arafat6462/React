@@ -52,4 +52,7 @@
 .download {
   background-color: #24a0ed;
   margin: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
 }

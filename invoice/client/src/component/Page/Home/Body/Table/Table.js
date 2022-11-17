@@ -3,6 +3,7 @@ import "./Table.css";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { CSVLink } from "react-csv";
 
 function Body({ columnName }) {
   const [invoiceList, setInvoiceList] = useState([]);
@@ -28,14 +29,14 @@ function Body({ columnName }) {
     <div>
       <h1>Invoice Table</h1>
 
-      <button
-        onClick={() => {
-          navigate("/update");
-        }}
+      <CSVLink
+        data={invoiceList}
+        filename="Invoice"
         className="button download"
       >
-        Go to update
-      </button>
+        Download Data
+      </CSVLink>
+
       <div>
         <table id="table">
           <thead>
