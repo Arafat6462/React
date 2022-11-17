@@ -32,9 +32,9 @@ const Update = () => {
   // Update
   const UpdateInvoice = () => {
     console.log("update called" + name);
-    Axios.post("http://localhost:3001/update", {
+    Axios.put(`http://localhost:3001/update/${id}`, {
       // send it to backend from frontend.
-      id: id,
+      // id: id,
       date: date,
       invoice: invoice,
       name: name,

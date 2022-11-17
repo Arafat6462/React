@@ -81,8 +81,10 @@ app.post("/create", (req, res) => {
 });
 
 // Update
-app.post("/update", (req, res) => {
-  const id = req.body.id;
+app.put("/update/:id", (req, res) => {
+  let id = req.params.id;
+
+  console.log("id is : " + id);
   const date = req.body.date;
   const invoice = req.body.invoice;
   const name = req.body.name;
@@ -103,14 +105,15 @@ app.post("/update", (req, res) => {
   const bkashCost = req.body.bkashCost;
   const other = req.body.other;
   const depositToAccount = req.body.depositToAccount;
-  console.log("calling Update " + id);
+  console.log("calling Update " + update);
+  console.log("calling Update " + typeof update);
 
   db.query(
-    `UPDATE invoice SET [?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?] WHERE id=${id}`,
+    "UPDATE invoice SET date=?,invoice_no=?,name=?,address=?,email=?,mobile=?,qty=?,product=?,product_price=?,advance=? ,`update`=?,delivery_charge=?,delivery_company=?,remarks=?,first_followup=?,second_followup=?,third_followup=?,bkash_cost=?,others_vat_tax=?,deposit_to_accounts=?  WHERE id=?",
     // "INSERT INTO invoice (`date`,`invoice_no`,`name`,`address`,`email`,`mobile`,`qty`,`product`,`product_price`,`advance`,`update`,`delivery_charge`,`delivery_company`,`remarks`,`first_followup`,`second_followup`,`third_followup`,`bkash_cost`,`others_vat_tax`,`deposit_to_accounts`) VALUES( ''2022/4/4', '123', 'pqr', 'gulshan', 'arafatdf@uashfjm.com', '34567', '34', 'edgfdm', '34', '43', 'na', '34', 'sdfvcx', 'dsf', 'dfs', 'dsf', 'sadf', '3', '3', '4')",
     // (id,date,invoice_no,name,address,email,mobile,qty,product,product_price,advance,update,delivery_charge,delivery_company,remarks,first_followup,second_followup,third_followup,bkash_cost,others_vat_tax,deposit_to_accounts)
+
     [
-      id,
       date,
       invoice,
       name,
@@ -131,12 +134,13 @@ app.post("/update", (req, res) => {
       bkashCost,
       other,
       depositToAccount,
+      id,
     ],
     (err, result) => {
       if (err) {
         console.log("error is : " + err);
       } else {
-        res.send("Values Inserted");
+        res.send(result);
       }
     }
   );
