@@ -8,9 +8,9 @@ function Header() {
       <NavLink className="link" to="/">
         Home
       </NavLink>
-      <NavLink className="link" to="/update">
+      {/* <NavLink className="link" to="/update">
         Update
-      </NavLink>
+      </NavLink> */}
       <NavLink className="link" to="/create">
         Cteate
       </NavLink>

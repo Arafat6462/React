@@ -109,7 +109,7 @@ const TableRow = ({ dataObject, columnName }) => (
           //   updateInvoice(dataObject);
           // }}
           className="button update"
-          to={"/update"}
+          to={`/update/${dataObject.id}`}
           state={dataObject}
         >
           Update

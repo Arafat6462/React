@@ -1,12 +1,21 @@
 import Axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Update.css";
 
 const Update = () => {
+  const getId = useParams(); // getting id from Table.js as getId throuth app.js id.
+  // console.log(getId.id);
+  // setSearchId(getId.id);
+
   const navigate = useNavigate();
-  const [searchId, setSearchId] = useState();
+  const [searchId, setSearchId] = useState(getId.id);
   const [searchResult, setSearchResult] = useState([""]);
+
+  // load info
+  useEffect(() => {
+    searchInvoice();
+  }, []);
 
   const [id, setId] = useState("");
   const [date, setDate] = useState("");
