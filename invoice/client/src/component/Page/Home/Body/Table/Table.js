@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
+var XLSX = require("xlsx");
 
 function Body({ columnName }) {
   const [invoiceList, setInvoiceList] = useState([]);
@@ -24,6 +25,15 @@ function Body({ columnName }) {
   // Update
   const Update = () => {
     console.log("Update is : ");
+  };
+
+  // Download data as XLSX
+  const downloadAsXLSX = () => {
+    console.log("XLSX");
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.json_to_sheet(invoiceList);
+    XLSX.utils.book_append_sheet(wb, ws, "invoice");
+    XLSX.writeFile(wb, "invoice.xlsx");
   };
 
   return (
@@ -48,6 +58,12 @@ function Body({ columnName }) {
         sheet="tablexls"
         buttonText="Download as XLS"
       />
+
+      {/* Download data as XLSX */}
+      <button className="button download" onClick={downloadAsXLSX}>
+        {" "}
+        Download as XLSX
+      </button>
 
       <div>
         <table id="table">
