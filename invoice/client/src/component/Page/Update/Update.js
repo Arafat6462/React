@@ -110,7 +110,7 @@ const Update = () => {
 
   return (
     <div>
-      <div className="search">
+      {/* <div className="search">
         <label>Search with ID</label>
         <input
           type="number"
@@ -121,7 +121,9 @@ const Update = () => {
           {" "}
           Search
         </button>
-      </div>
+      </div> */}
+
+      <h1>Update Invoice</h1>
       <div className="field">
         <label>ID</label>
         <input

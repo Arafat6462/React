@@ -38,7 +38,7 @@ function Body({ columnName }) {
 
   return (
     <div>
-      <h1>Invoice Table</h1>
+      <h1>Data Table</h1>
 
       {/* Download data as CSV */}
       <CSVLink
