@@ -4,6 +4,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 function Body({ columnName }) {
   const [invoiceList, setInvoiceList] = useState([]);
@@ -29,13 +30,24 @@ function Body({ columnName }) {
     <div>
       <h1>Invoice Table</h1>
 
+      {/* Download data as CSV */}
       <CSVLink
         data={invoiceList}
         filename="Invoice"
         className="button download"
       >
-        Download Data
+        Download as CSV
       </CSVLink>
+
+      {/* Download data as XLS */}
+      <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className="button download"
+        table="table"
+        filename="Invoice"
+        sheet="tablexls"
+        buttonText="Download as XLS"
+      />
 
       <div>
         <table id="table">
