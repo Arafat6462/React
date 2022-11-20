@@ -1,8 +1,11 @@
 import Axios from "axios";
 import React, { useState } from "react";
 import "./Create.css";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+  const navigate = useNavigate();
+
   //   const [id, setId] = useState(0);
   const [date, setDate] = useState("");
   const [invoice, setInvoice] = useState(0);
@@ -52,6 +55,7 @@ const Create = () => {
     }).then(() => {
       createStatus = "Invoice Create Success";
       console.log(createStatus);
+      navigate("/");
     });
   };
 
