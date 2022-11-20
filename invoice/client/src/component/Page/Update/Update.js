@@ -1,9 +1,10 @@
 import Axios from "axios";
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Update.css";
 
 const Update = () => {
+  const navigate = useNavigate();
   const [searchId, setSearchId] = useState();
   const [searchResult, setSearchResult] = useState([""]);
 
@@ -55,8 +56,11 @@ const Update = () => {
       bkashCost: bkashCost,
       other: other,
       depositToAccount: depositToAccount,
-    }).then(() => {
-      console.log("success");
+    }).then((response) => {
+      if (response) {
+        console.log("success");
+        navigate("/");
+      }
     });
   };
 
@@ -66,7 +70,7 @@ const Update = () => {
       if (Response.data.length != 0) {
         setSearchResult(Response.data);
         console.log(typeof Response.data[0].name);
-        console.log("Others : "+Response.data[0].others_vat_tax);
+        console.log("Others : " + Response.data[0].others_vat_tax);
 
         setId(Response.data[0].id);
         setDate(Response.data[0].date);
