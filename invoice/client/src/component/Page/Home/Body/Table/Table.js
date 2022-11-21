@@ -1,6 +1,7 @@
 import React from "react";
 import "./Table.css";
 import Axios from "axios";
+import Pagination from "./Pagination";
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
@@ -10,6 +11,14 @@ var XLSX = require("xlsx");
 function Body({ columnName }) {
   const [invoiceList, setInvoiceList] = useState([]);
   const navigate = useNavigate(); // to redirect the page
+
+  // Pagenation
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(4);
+  const lastPostIndex = currentPage * postPerPage;
+  const firstPostIndex = lastPostIndex - postPerPage;
+  const currentPost = invoiceList.slice(firstPostIndex, lastPostIndex);
+  console.log("pagenation is : " + typeof currentPost);
 
   // GET Data
   const getAllInvoice = () => {
@@ -39,7 +48,6 @@ function Body({ columnName }) {
   return (
     <div>
       <h1>Data Table</h1>
-
       {/* Download data as CSV */}
       <CSVLink
         data={invoiceList}
@@ -48,7 +56,6 @@ function Body({ columnName }) {
       >
         Download as CSV
       </CSVLink>
-
       {/* Download data as XLS */}
       <ReactHTMLTableToExcel
         id="test-table-xls-button"
@@ -58,13 +65,11 @@ function Body({ columnName }) {
         sheet="tablexls"
         buttonText="Download as XLS"
       />
-
       {/* Download data as XLSX */}
       <button className="button download" onClick={downloadAsXLSX}>
         {" "}
         Download as XLSX
       </button>
-
       <div>
         <table id="table">
           <thead>
@@ -76,12 +81,18 @@ function Body({ columnName }) {
             </tr>
           </thead>
           <tbody>
-            {invoiceList.map((dataObject, index) => (
+            {currentPost.map((dataObject, index) => (
               <TableRow dataObject={dataObject} columnName={columnName} />
             ))}
           </tbody>
         </table>
       </div>
+      <Pagination
+        totalPost={invoiceList.length}
+        postPerPage={postPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 }

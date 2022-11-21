@@ -56,3 +56,31 @@
   font-size: 18px;
   padding: 10px;
 }
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: center;
+}
+.pagination button {
+  width: 40px;
+  height: 40px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #e7e7e7;
+  color: rgb(0, 0, 0);
+  border-color: #0273f3;
+}
+
+.pagination button.active {
+  font-weight: 900;
+  border-color: rgb(230, 208, 14);
+  background: #24a0ed;
+  color: #fff;
+}
